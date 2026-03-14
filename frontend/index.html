@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareerFit AI — Find Your Perfect Career</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+</head>
+<body>
+  <div class="bg-mesh"></div>
+  <div class="grid-overlay"></div>
+  <div class="particles" id="particles"></div>
+
+  <main class="page login-page">
+
+    <!-- Hero / Info Side -->
+    <section class="hero-side">
+      <div class="brand">Career<span>Fit</span> AI</div>
+
+      <h1 class="hero-headline">
+        Discover Your<br>
+        <span class="highlight">Perfect Career</span><br>
+        With AI
+      </h1>
+
+      <p class="hero-sub">
+        Upload your resume or enter your skills and let our machine learning model
+        predict the best-fit career path for you — powered by real industry data.
+      </p>
+
+      <ul class="features-list">
+        <li>
+          <span class="feature-icon">🧠</span>
+          AI-powered RandomForest prediction engine
+        </li>
+        <li>
+          <span class="feature-icon">📄</span>
+          Smart resume parsing — PDF &amp; DOCX support
+        </li>
+        <li>
+          <span class="feature-icon">📊</span>
+          Top 3 career matches with confidence scores
+        </li>
+        <li>
+          <span class="feature-icon">💼</span>
+          Salary insights &amp; top companies in India
+        </li>
+        <li>
+          <span class="feature-icon">🗺️</span>
+          Personalized learning path guidance
+        </li>
+      </ul>
+
+      <!-- Floating mini cards -->
+      <div class="floating-cards">
+        <div class="mini-card">
+          <div class="mc-label">Best Match</div>
+          <div class="mc-value accent">Data Scientist</div>
+        </div>
+        <div class="mini-card">
+          <div class="mc-label">Avg Salary</div>
+          <div class="mc-value accent3">₹14 LPA</div>
+        </div>
+        <div class="mini-card">
+          <div class="mc-label">Confidence</div>
+          <div class="mc-value accent2">92.4%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Auth Side -->
+    <section class="auth-side">
+      <div class="auth-card fade-in">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Login or create your account to get started</p>
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="loginTab">Login</button>
+          <button class="auth-tab" id="signupTab">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form class="auth-form active" id="loginForm" novalidate>
+          <div id="loginError" class="alert alert-error"></div>
+
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" />
+          </div>
+
+          <button type="submit" class="btn-primary">Login to Dashboard</button>
+          <button type="button" class="btn-demo" id="demoLogin">🚀 Fill Demo Credentials</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form class="auth-form" id="signupForm" novalidate>
+          <div id="signupError" class="alert alert-error"></div>
+          <div id="signupSuccess" class="alert alert-success"></div>
+
+          <div class="form-group">
+            <label for="signupName">Full Name</label>
+            <input type="text" id="signupName" placeholder="Your full name" autocomplete="name" />
+          </div>
+
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email" />
+          </div>
+
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" placeholder="Min 6 characters" autocomplete="new-password" />
+          </div>
+
+          <div class="form-group">
+            <label for="signupConfirm">Confirm Password</label>
+            <input type="password" id="signupConfirm" placeholder="Repeat password" autocomplete="new-password" />
+          </div>
+
+          <button type="submit" class="btn-primary">Create Account</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
+  <script>
+    // Generate particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 4 + 2;
+      p.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        left: ${Math.random() * 100}%;
+        animation-delay: ${Math.random() * 12}s;
+        animation-duration: ${10 + Math.random() * 8}s;
+        background: ${['#4f9dff','#a259ff','#00e5c8'][Math.floor(Math.random()*3)]};
+      `;
+      container.appendChild(p);
+    }
+  </script>
+</body>
+</html>

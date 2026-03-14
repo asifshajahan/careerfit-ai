@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — CareerFit AI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+</head>
+<body>
+  <div class="bg-mesh"></div>
+  <div class="grid-overlay"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification"></div>
+
+  <div class="dashboard-layout page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-brand">CareerFit AI</div>
+      <div class="nav-user">
+        <div class="user-avatar" id="userInitial">U</div>
+        <div class="user-info">
+          <span class="user-name-nav" id="userName">User</span>
+          <span class="user-email-nav" id="userEmail">user@email.com</span>
+        </div>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dash-content">
+
+      <!-- Header -->
+      <div class="dash-header fade-in">
+        <h1>Career Prediction Dashboard</h1>
+        <p>Upload your resume or enter your skills to discover your ideal career path</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row fade-in-delay">
+        <div class="stat-card">
+          <div class="stat-icon">🧠</div>
+          <div>
+            <div class="stat-label">ML Model</div>
+            <div class="stat-value" style="color: var(--accent)">RandomForest</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💼</div>
+          <div>
+            <div class="stat-label">Career Roles</div>
+            <div class="stat-value">100+</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div>
+            <div class="stat-label">Model Accuracy</div>
+            <div class="stat-value" style="color: var(--success)">95%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area fade-in-delay2">
+        <div class="input-area-header">
+          <h2>📋 Analyze Your Profile</h2>
+          <div class="input-tabs">
+            <button class="input-tab active" data-panel="resumePanel">📄 Upload Resume</button>
+            <button class="input-tab" data-panel="skillsPanel">⌨️ Enter Skills</button>
+          </div>
+        </div>
+
+        <!-- Resume Panel -->
+        <div class="input-panel active" id="resumePanel">
+          <div class="drop-zone" id="dropZone">
+            <div class="dz-icon">📎</div>
+            <div class="dz-title">Drop your resume here</div>
+            <div class="dz-sub">or click to browse — PDF or DOCX accepted</div>
+            <input type="file" id="resumeFile" accept=".pdf,.docx,.doc" hidden />
+          </div>
+          <div id="fileInfo"></div>
+          <div style="margin-top: 14px; font-size: 0.82rem; color: var(--muted); text-align: center;">
+            💡 Your resume is processed locally and never stored permanently
+          </div>
+        </div>
+
+        <!-- Skills Panel -->
+        <div class="input-panel" id="skillsPanel">
+          <div class="skills-input-wrap">
+            <input
+              type="text"
+              id="skillInput"
+              placeholder="Type a skill and press Enter or comma (e.g. Python, React, AWS...)"
+            />
+            <button class="btn-add-skill" id="addSkillBtn">+ Add</button>
+          </div>
+          <div class="skill-tags" id="skillTags"></div>
+          <div class="skill-count-label" id="skillCount">0 skills added</div>
+
+          <div class="suggestions-label">Quick Add Popular Skills</div>
+          <div class="skill-suggestions" id="skillSuggestions"></div>
+        </div>
+
+        <!-- Predict Button -->
+        <div class="predict-wrap">
+          <button class="btn-predict" id="predictBtn">
+            <span>✦</span> Predict My Career
+          </button>
+        </div>
+      </div>
+
+      <!-- ── RESULT SECTION ── -->
+      <div id="resultSection">
+
+        <div class="result-header">
+          <h2>🎯 AI Career Prediction Result</h2>
+          <span class="result-badge">✅ Analysis Complete</span>
+        </div>
+
+        <!-- Detected Skills -->
+        <div class="detected-skills-wrap" id="detectedSkillsWrap">
+          <h4>🔍 Skills Detected from Your Profile</h4>
+          <div class="detected-skills" id="detectedSkills"></div>
+        </div>
+
+        <!-- Best Career Card -->
+        <div class="best-career-card">
+          <div class="career-card-top">
+            <div class="career-title-group">
+              <div class="career-label">Best Career Match</div>
+              <div class="career-name" id="bestCareer">—</div>
+            </div>
+            <div class="confidence-badge">
+              <span class="conf-percent" id="careerConfidence">—</span>
+              <span class="conf-label">Confidence</span>
+            </div>
+          </div>
+
+          <p class="career-description" id="careerDescription"></p>
+
+          <div class="career-details-grid">
+            <div class="detail-item">
+              <div class="detail-label">💰 Average Salary</div>
+              <div class="detail-value" id="careerSalary" style="color: var(--gold); font-size: 1.2rem; font-weight: 700;">—</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">🏢 Top Companies</div>
+              <div class="detail-value" id="careerCompanies" style="font-size: 0.88rem;">—</div>
+            </div>
+            <div class="detail-item full">
+              <div class="detail-label">🗺️ Learning Path</div>
+              <div class="detail-value" id="careerPath" style="color: var(--accent3);">—</div>
+            </div>
+            <div class="detail-item full">
+              <div class="detail-label">🛠️ Key Skills Required</div>
+              <div class="career-key-skills" id="careerKeySkills"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top 3 -->
+        <div class="top3-section">
+          <h3>🏆 Top 3 Career Predictions</h3>
+          <div id="top3Careers"></div>
+        </div>
+
+      </div>
+      <!-- end #resultSection -->
+
+    </div>
+    <!-- end .dash-content -->
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    // Particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 15; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 3 + 2;
+      p.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        left: ${Math.random() * 100}%;
+        animation-delay: ${Math.random() * 12}s;
+        animation-duration: ${10 + Math.random() * 8}s;
+        background: ${['#4f9dff','#a259ff','#00e5c8'][Math.floor(Math.random()*3)]};
+        opacity: 0.3;
+      `;
+      container.appendChild(p);
+    }
+  </script>
+</body>
+</html>

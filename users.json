@@ -1,0 +1,28 @@
+{
+  "asifshajahan19@gmail.com": {
+    "name": "mohammed asif",
+    "email": "asifshajahan19@gmail.com",
+    "password": "227cd222b5af9dacbf5a77ae422425653f7855d1d7a6690122e713e61e772145",
+    "created_at": "2026-03-11T21:47:17.348950",
+    "predictions": [
+      {
+        "type": "skills",
+        "input": "python, java, machine learning, sql, aws",
+        "result": "Data Scientist",
+        "timestamp": "2026-03-11T21:48:28.048169"
+      },
+      {
+        "type": "resume",
+        "filename": "lk.pdf",
+        "result": "Data Engineer",
+        "timestamp": "2026-03-14T19:12:31.470348"
+      },
+      {
+        "type": "skills",
+        "input": "machine learning, react, javascript, java, docker, tensorflow",
+        "result": "Logistics Manager",
+        "timestamp": "2026-03-14T19:13:01.219848"
+      }
+    ]
+  }
+}
