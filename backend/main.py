@@ -6,9 +6,9 @@ import os
 import io
 from typing import Optional, List
 
-from skill_extractor import extract_skills, normalize_skills, skills_to_string
-from predictor import predict_career, get_all_career_info
-from auth import signup_user, login_user, save_prediction
+from backend.skill_extractor import extract_skills, normalize_skills, skills_to_string
+from backend.predictor import predict_career, get_all_career_info
+from backend.auth import signup_user, login_user, save_prediction
 
 # PDF / DOCX extractors
 try:
