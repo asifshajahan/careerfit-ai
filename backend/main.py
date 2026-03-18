@@ -42,10 +42,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://careerfit-ai.vercel.app",
+        "https://careerfit-ai-tau.vercel.app",  # ✅ your real frontend URL
         "http://127.0.0.1:5500",
         "http://localhost:5500",
-        "*"
     ],
     allow_credentials=True,
     allow_methods=["*"],
