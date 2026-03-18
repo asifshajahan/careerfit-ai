@@ -22,6 +22,12 @@
         "input": "machine learning, react, javascript, java, docker, tensorflow",
         "result": "Logistics Manager",
         "timestamp": "2026-03-14T19:13:01.219848"
+      },
+      {
+        "type": "resume",
+        "filename": "lk.pdf",
+        "result": "Data Engineer",
+        "timestamp": "2026-03-18T10:32:31.892403"
       }
     ]
   }
