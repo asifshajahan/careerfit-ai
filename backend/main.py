@@ -41,7 +41,12 @@ app = FastAPI(
 # ✅ Improved CORS configuration (important for frontend index.html)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow any frontend origin for development
+    allow_origins=[
+        "https://careerfit-ai.vercel.app",
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "*"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
