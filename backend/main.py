@@ -38,11 +38,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# ✅ Improved CORS configuration (important for frontend index.html)
+# ✅ CORS FIX
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://careerfit-ai-tau.vercel.app",  # ✅ your real frontend URL
+        "https://careerfit-ai-tau.vercel.app",
         "http://127.0.0.1:5500",
         "http://localhost:5500",
     ],
@@ -50,6 +50,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ✅ PRE-FLIGHT FIX (IMPORTANT)
+@app.options("/{full_path:path}")
+async def preflight_handler(full_path: str):
+    return JSONResponse(content={"message": "OK"})
 
 
 # ─── Pydantic Models ─────────────────────────────────────────────────────────
@@ -171,7 +176,6 @@ async def predict_from_resume(
     skills = extract_skills(text)
 
     if not skills:
-        # fallback
         skills = normalize_skills(text[:500])
 
     if not skills:
