@@ -1,4 +1,4 @@
-const API_BASE = "https://careerfit-ai.onrender.com";
+const API_BASE = "https://careerfit-ai-backend.onrender.com";
 
 const api = {
 
